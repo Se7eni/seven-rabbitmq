@@ -1,9 +1,7 @@
 package com.atguigu.rabbitmq.one;
 
+import com.atguigu.rabbitmq.utils.RabbitMQUtils;
 import com.rabbitmq.client.*;
-
-import java.io.IOException;
-import java.util.concurrent.TimeoutException;
 
 /**
  * 消费者：接受消息
@@ -13,7 +11,7 @@ public class Consumer {
     public  static  final  String QUEUE_NAME ="hello";
     //接受消息
     public static void main(String[] args) throws Exception {
-        //创建连接工厂
+       /* //创建连接工厂
         ConnectionFactory connectionFactory = new ConnectionFactory();
         //工厂IP 连接rabbitmq的队列
         connectionFactory.setHost("127.0.0.1");
@@ -24,9 +22,9 @@ public class Consumer {
 
 
         //创建连接
-        Connection connection = connectionFactory.newConnection();
+        Connection connection = connectionFactory.newConnection();*/
         //获取信道
-        Channel channel = connection.createChannel();
+        Channel channel = RabbitMQUtils.getChannel();
 
         //声明接收消息的回调
         DeliverCallback deliverCallback = (consumerTag, message) -> {

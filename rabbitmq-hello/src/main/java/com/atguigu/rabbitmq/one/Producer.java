@@ -1,11 +1,7 @@
 package com.atguigu.rabbitmq.one;
 
+import com.atguigu.rabbitmq.utils.RabbitMQUtils;
 import com.rabbitmq.client.Channel;
-import com.rabbitmq.client.Connection;
-import com.rabbitmq.client.ConnectionFactory;
-
-import java.io.IOException;
-import java.util.concurrent.TimeoutException;
 
 /**
  * 生产者：发送消息
@@ -14,8 +10,8 @@ public class Producer {
     //队列名称
     public  static  final  String QUEUE_NAME ="hello";
 
-    public static void main(String[] args) throws IOException, TimeoutException {
-        //创建连接工厂
+    public static void main(String[] args) throws Exception {
+        /*//创建连接工厂
         ConnectionFactory connectionFactory = new ConnectionFactory();
         //工厂IP 连接rabbitmq的队列
         connectionFactory.setHost("127.0.0.1");
@@ -26,9 +22,9 @@ public class Producer {
 
         
         //创建连接
-        Connection connection = connectionFactory.newConnection();
+        Connection connection = connectionFactory.newConnection();*/
         //获取信道
-        Channel channel = connection.createChannel();
+        Channel channel = RabbitMQUtils.getChannel();
         /**
          * 生成一个队列
          * 1：队列名称
@@ -59,5 +55,5 @@ public class Producer {
  * RibbitMQ的六大模式：简单模式（Hello World），工作模式（Work queues），
  * 					发布订阅模式（Publish/Subscribe），路由模式(Routing)，
  * 					主题模式(Topics)，发布确认模式(Publisher Confirms)
- * Producer-->Connection(多个Channel)-->Broker（RabbitMQ（Exchange-->多个Queue））-->Connection(多个Channel)-->Consumer				
+ * Producer-->Connection(多个Channel)-->Broker（RabbitMQ（Exchange-->多个Queue））-->Connection(多个Channel)-->Consumer
  */
