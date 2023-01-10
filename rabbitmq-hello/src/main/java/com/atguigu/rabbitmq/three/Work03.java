@@ -35,6 +35,10 @@ public class Work03 {
         CancelCallback CancelCallback =(consumerTag)->{
             System.out.println("消费者取消消费接口回调");
         };
+
+        //消费者在接受消费之前 设置不公平分发，默认设置为0，公平分发，你一个我一个，设置为1不公平分发，能者多劳
+        int prefetchCount = 1;
+        channel.basicQos(prefetchCount);
         //采用手动应答
         boolean autoAck = false;
         //接受消息
