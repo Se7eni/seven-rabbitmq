@@ -20,7 +20,7 @@ public class Work04 {
         //声明接收消息的回调
         DeliverCallback deliverCallback = ( consumerTag,  message)->{
             //沉睡1s
-            SleepUtils.sleep(30);
+            SleepUtils.sleep(10);
             System.out.println("接收到的消息："+new String(message.getBody()));
             //需要手动应答
             /**
@@ -35,7 +35,9 @@ public class Work04 {
             System.out.println("消费者取消消费接口回调");
         };
         //消费者在接受消费之前 设置不公平分发，默认设置为0，公平分发，你一个我一个，设置为1不公平分发，能者多劳
-        int prefetchCount = 1;
+        //int prefetchCount = 1;
+        //预取值
+        int prefetchCount = 5;
         channel.basicQos(prefetchCount);
         //采用手动应答
         boolean autoAck = false;

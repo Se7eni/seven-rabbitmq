@@ -14,7 +14,10 @@ public class Task02 {
     public  static  final String TASK_QUEUE_NAME="ack_queue";
 
     public static void main(String[] args) throws Exception {
+        //获取信道
         Channel channel = RabbitMQUtils.getChannel();
+        //开启发布确认
+        channel.confirmSelect();
 
         /**
          * 生成一个队列
